@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "438277022200",
+    "project_id": "messenger-cd239",
+    "storage_bucket": "messenger-cd239.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:438277022200:android:1fc22954b45ae1c8c5360d",
+        "android_client_info": {
+          "package_name": "com.saba.messagingapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "438277022200-h2sssc34pc9pkg6ei2jlj1qb1kruu2k6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxeV1yXR1OyJuY4Mx-Jwgy9WXnOQv5Fvk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "438277022200-h2sssc34pc9pkg6ei2jlj1qb1kruu2k6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
