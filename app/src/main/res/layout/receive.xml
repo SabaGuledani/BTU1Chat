@@ -7,8 +7,8 @@
         android:id="@+id/senderImg"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_alignLeft="@+id/txt_recceived"
         android:layout_marginTop="27dp"
+        android:layout_alignLeft="@+id/txt_recceived"
         android:layout_marginEnd="-33dp"
         android:layout_toStartOf="@+id/relative"
         android:src="@drawable/next" />
@@ -33,6 +33,7 @@
 
         <TextView
             android:layout_width="wrap_content"
+            android:maxWidth="250dp"
             android:layout_height="wrap_content"
             android:text="this is received message"
             android:textSize="18sp"

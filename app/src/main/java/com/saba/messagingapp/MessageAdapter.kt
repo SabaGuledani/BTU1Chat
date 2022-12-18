@@ -38,6 +38,7 @@ class MessageAdapter(val context:Context,val messageList:ArrayList<Message>):
             val holder = holder as ReceiveViewHolder
             holder.receiveMessage.text = currentMessage.message
             holder.name.text = currentMessage.sendername.toString()
+
             Glide.with(context)
                 .load(currentMessage.senderImgUrl.toString())
                 .fitCenter()

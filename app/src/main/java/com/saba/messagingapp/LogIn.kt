@@ -28,6 +28,7 @@ class LogIn : AppCompatActivity() {
                     .addOnCompleteListener {task ->
                         if(task.isSuccessful){
                             val intent = Intent(this,MainActivity::class.java)
+                            intent.putExtra("true",true)
                             startActivity(intent)
 
                         }else{
