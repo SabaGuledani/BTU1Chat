@@ -1,29 +1,36 @@
 package com.saba.messagingapp
 
-import android.app.Activity
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
+import android.content.Intent
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.MenuItem
+import android.view.View
 import android.widget.ImageView
-import android.widget.Toast
+import android.widget.TextView
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import androidx.lifecycle.DefaultLifecycleObserver
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.OnLifecycleEvent
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.saba.messagingapp.databinding.ActivityMainBinding
 
 
+
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var mDbRef: DatabaseReference
+
+    private lateinit var toggle: ActionBarDrawerToggle
 
     private lateinit var messageList: ArrayList<Message>
     private lateinit var messageAdapter: MessageAdapter
@@ -41,9 +48,32 @@ class MainActivity : AppCompatActivity() {
         val senderUid = FirebaseAuth.getInstance().currentUser?.uid
 
 
-        var messageRecyclerView = binding.recycler
-        var messagebox = binding.messageBox
-        var sendbutton: ImageView = binding.sendImage
+        val messageRecyclerView = binding.recycler
+        val messagebox = binding.messageBox
+        val sendbutton: ImageView = binding.sendImage
+        val drawerLayout:DrawerLayout = binding.drawerLayout
+        val navView:NavigationView = binding.navView
+
+        toggle = ActionBarDrawerToggle(this,drawerLayout,R.string.open, R.string.close)
+        drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+
+        navView.setNavigationItemSelectedListener {
+            when(it.itemId){
+                R.id.log_out -> {FirebaseAuth.getInstance().signOut()
+                        finish()}
+
+            }
+            true
+        }
+
+
+
+
+
 
         messageList = ArrayList()
         messageAdapter = MessageAdapter(this, messageList)
@@ -51,9 +81,29 @@ class MainActivity : AppCompatActivity() {
         messageRecyclerView.layoutManager = LinearLayoutManager(this)
         messageRecyclerView.adapter = messageAdapter
 
+        var header:View = navView.getHeaderView(0)
 
 
+        FirebaseDatabase.getInstance().getReference("user").child("$senderUid").get()
+            .addOnSuccessListener {
+                if (it.exists()) {
+                    val username = it.child("name").value
+                    val img = it.child("img").value
+                    val email = it.child("email").value
+                    var userName = header.findViewById<TextView>(R.id.user_name_menu)
+                    var userEmail = header.findViewById<TextView>(R.id.email_menu)
+                    var image = header.findViewById<ImageView>(R.id.circle_img)
+                    userEmail.setText(email.toString())
+                    userName.setText(username.toString())
+                    Glide.with(this)
+                        .load(img.toString())
+                        .fitCenter()
+                        .skipMemoryCache(true)
+                        .diskCacheStrategy(DiskCacheStrategy.NONE)
+                        .into(image)
 
+                }
+            }
 
         mDbRef.child("chat").child("messages")
             .addValueEventListener(object : ValueEventListener {
@@ -90,8 +140,8 @@ class MainActivity : AppCompatActivity() {
 
         sendbutton.setOnClickListener {
             val message = messagebox.text.toString()
-            var name = ""
-            var image = ""
+            var name: String
+            var image: String
 
 
             FirebaseDatabase.getInstance().getReference("user").child("$senderUid").get()
@@ -113,6 +163,14 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(toggle.onOptionsItemSelected(item)){
+            return true
+        }
+        return super.onOptionsItemSelected(item)
+
     }
 
     override fun onResume() {

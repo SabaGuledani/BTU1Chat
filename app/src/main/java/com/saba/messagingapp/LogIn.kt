@@ -7,6 +7,7 @@ import android.text.TextUtils
 import android.util.Patterns
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.saba.messagingapp.databinding.ActivityLogInBinding
 
 class LogIn : AppCompatActivity() {
@@ -20,23 +21,38 @@ class LogIn : AppCompatActivity() {
         val password = binding.password
         val btn = binding.createbtn
 
-        btn.setOnClickListener {
-            if (email.editText?.text.toString().isValidEmail() && password.editText?.text.toString() != ""
-                && password.editText?.text.toString().length >= 6 ){
-                FirebaseAuth.getInstance()
-                    .signInWithEmailAndPassword(email.editText?.text.toString(),password.editText?.text.toString())
-                    .addOnCompleteListener {task ->
-                        if(task.isSuccessful){
-                            val intent = Intent(this,MainActivity::class.java)
-                            intent.putExtra("true",true)
-                            startActivity(intent)
+        var user:FirebaseUser? = FirebaseAuth.getInstance().getCurrentUser()
 
-                        }else{
-                            Toast.makeText(this, "something went wrong", Toast.LENGTH_SHORT).show()
+        if(user!=null){
+            val intent = Intent(this,MainActivity::class.java)
+            intent.putExtra("true",true)
+            startActivity(intent)
+        }else {
+
+            btn.setOnClickListener {
+                if (email.editText?.text.toString()
+                        .isValidEmail() && password.editText?.text.toString() != ""
+                    && password.editText?.text.toString().length >= 6
+                ) {
+                    FirebaseAuth.getInstance()
+                        .signInWithEmailAndPassword(
+                            email.editText?.text.toString(),
+                            password.editText?.text.toString()
+                        )
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                val intent = Intent(this, MainActivity::class.java)
+                                intent.putExtra("true", true)
+                                startActivity(intent)
+
+                            } else {
+                                Toast.makeText(this, "something went wrong", Toast.LENGTH_SHORT)
+                                    .show()
+                            }
+
                         }
 
-                    }
-
+                }
             }
         }
 
