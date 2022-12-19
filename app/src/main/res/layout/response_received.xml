@@ -5,11 +5,11 @@
     android:paddingBottom="8dp">
 
     <ImageView
-        android:id="@+id/senderImg"
+        android:id="@+id/senderImg_response"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginTop="27dp"
-        android:layout_alignLeft="@+id/txt_recceived"
+        android:layout_marginTop="57dp"
+        android:layout_alignLeft="@+id/txt_recceived_recres"
         android:layout_marginEnd="-33dp"
         android:layout_toStartOf="@+id/relative"
         android:src="@drawable/next"
@@ -17,12 +17,39 @@
 
     <TextView
         android:layout_width="wrap_content"
-        android:id="@+id/name"
+        android:id="@+id/name_response"
         android:layout_height="wrap_content"
         android:text="name"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="45dp"
         />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/sent_background"
+        android:backgroundTint="#6D3668AF"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="17dp"
+        android:forceDarkAllowed="false"
+        android:layout_marginBottom="10dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:maxWidth="250dp"
+            android:layout_height="wrap_content"
+            android:maxHeight="50dp"
+            android:text="this is sent message"
+            android:textSize="18sp"
+            android:padding="10dp"
+            android:maxLines="1"
+            android:id="@+id/txt_sent_recres"
+            android:textColor="@color/white"
+            android:forceDarkAllowed="false"/>
+    </RelativeLayout>
+
     <RelativeLayout
         android:id="@+id/relative"
         android:layout_width="wrap_content"
@@ -30,7 +57,7 @@
         android:background="@drawable/btn_background"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="35dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="50dp"
         >
 
         <TextView
@@ -40,7 +67,7 @@
             android:text="this is received message"
             android:textSize="18sp"
             android:padding="10dp"
-            android:id="@+id/txt_recceived"/>
+            android:id="@+id/txt_recceived_recres"/>
     </RelativeLayout>
 
 

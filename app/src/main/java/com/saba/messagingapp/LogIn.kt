@@ -27,7 +27,8 @@ class LogIn : AppCompatActivity() {
             val intent = Intent(this,MainActivity::class.java)
             intent.putExtra("true",true)
             startActivity(intent)
-        }else {
+            finish()
+        }
 
             btn.setOnClickListener {
                 if (email.editText?.text.toString()
@@ -44,6 +45,7 @@ class LogIn : AppCompatActivity() {
                                 val intent = Intent(this, MainActivity::class.java)
                                 intent.putExtra("true", true)
                                 startActivity(intent)
+                                finish()
 
                             } else {
                                 Toast.makeText(this, "something went wrong", Toast.LENGTH_SHORT)
@@ -54,7 +56,7 @@ class LogIn : AppCompatActivity() {
 
                 }
             }
-        }
+
 
     }
 

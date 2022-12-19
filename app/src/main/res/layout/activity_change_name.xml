@@ -4,6 +4,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".changeName">
+    tools:context=".changeName"
+    android:background="@drawable/gradient">
 
+    <EditText
+        android:id="@+id/name_change_et"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:textSize="23sp"
+        android:paddingLeft="10dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Name"
+        android:textColor="@color/cisperilamazi"
+        android:textColorHint="@color/cisperilamazi"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.079"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023"
+        android:forceDarkAllowed="false"
+        android:background="@drawable/message_box_background"/>
+
+    <Button
+        android:id="@+id/changebtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_background"
+        android:forceDarkAllowed="false"
+        android:text="change name"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.263"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.153" />
 </androidx.constraintlayout.widget.ConstraintLayout>

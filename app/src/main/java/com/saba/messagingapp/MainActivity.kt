@@ -11,6 +11,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
@@ -53,18 +54,23 @@ class MainActivity : AppCompatActivity() {
         val sendbutton: ImageView = binding.sendImage
         val drawerLayout:DrawerLayout = binding.drawerLayout
         val navView:NavigationView = binding.navView
-
+        var replytext = binding.replyText
+        var replyreset = binding.resetReply
+        var responselayout = binding.responseLayout
         toggle = ActionBarDrawerToggle(this,drawerLayout,R.string.open, R.string.close)
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-
+        //navview handling
         navView.setNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.log_out -> {FirebaseAuth.getInstance().signOut()
-                        finish()}
+                    startActivity(Intent(this,LogIn::class.java))
+                    finish()}
+                R.id.name_change ->{startActivity(Intent(this,changeName::class.java))
+                }
 
             }
             true
@@ -83,7 +89,7 @@ class MainActivity : AppCompatActivity() {
 
         var header:View = navView.getHeaderView(0)
 
-
+        //header info display
         FirebaseDatabase.getInstance().getReference("user").child("$senderUid").get()
             .addOnSuccessListener {
                 if (it.exists()) {
@@ -105,6 +111,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
+        //displaying messages and notifying
         mDbRef.child("chat").child("messages")
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
@@ -136,35 +143,61 @@ class MainActivity : AppCompatActivity() {
 
             })
 
+        var responseMessage = ""
+        //response click
+        messageAdapter.setOnItemClickListener(object:MessageAdapter.onItemClickListener{
+            override fun onItemClick(position: Int): String {
+                responseMessage = messageList[position].message.toString()
+                responselayout.visibility = View.VISIBLE
+                replytext.text = responseMessage
+                return responseMessage
+            }
+        })
+
+        //response cancel
+        replyreset.setOnClickListener {
+            responseMessage = ""
+            responselayout.visibility = View.GONE
+            replytext.text = responseMessage
+        }
 
 
+        //sending message
         sendbutton.setOnClickListener {
             val message = messagebox.text.toString()
             var name: String
             var image: String
 
+            if(message != "") {
+                FirebaseDatabase.getInstance().getReference("user").child("$senderUid").get()
+                    .addOnSuccessListener {
 
-            FirebaseDatabase.getInstance().getReference("user").child("$senderUid").get()
-                .addOnSuccessListener {
+                        if (it.exists()) {
+                            val username = it.child("name").value
+                            val img = it.child("img").value
+                            name = username.toString()
+                            image = img.toString()
 
-                    if (it.exists()) {
-                        val username = it.child("name").value
-                        val img = it.child("img").value
-                        name = username.toString()
-                        image = img.toString()
-                        val messageObject = Message(message, senderUid, name, image)
+                            val messageObject = Message(message, senderUid, name, image, responseMessage)
 
-                        mDbRef.child("chat").child("messages").push()
-                            .setValue(messageObject)
+                            mDbRef.child("chat").child("messages").push()
+                                .setValue(messageObject)
 
-                        messagebox.setText("")
+                            messagebox.setText("")
+                            responseMessage = ""
+                            responselayout.visibility = View.GONE
 
 
+                        }
                     }
-                }
+            }
+
+
         }
     }
 
+
+    //toggle
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(toggle.onOptionsItemSelected(item)){
             return true
@@ -173,17 +206,19 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    //active status?
     override fun onResume() {
         super.onResume()
         active = true
     }
-
     override fun onPause() {
         super.onPause()
         active = false
 
     }
 
+
+    //notification channel function
     private fun createNotificationChannel() {
         // Create the NotificationChannel, but only on API 26+ because
         // the NotificationChannel class is new and not in the support library
