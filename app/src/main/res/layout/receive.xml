@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mainRelative"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingBottom="8dp">
@@ -8,40 +10,124 @@
         android:id="@+id/senderImg"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginTop="27dp"
         android:layout_alignLeft="@+id/txt_recceived"
+        android:layout_marginTop="27dp"
         android:layout_marginEnd="-33dp"
         android:layout_toStartOf="@+id/relative"
-        android:src="@drawable/next"
-        android:forceDarkAllowed="false"/>
+        android:forceDarkAllowed="false"
+        android:src="@drawable/next" />
 
     <TextView
-        android:layout_width="wrap_content"
         android:id="@+id/name"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="name"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="45dp"
-        />
+        android:text="name" />
+
     <RelativeLayout
         android:id="@+id/relative"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/btn_background"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="35dp"
         android:layout_marginTop="20dp"
-        >
+        android:background="@drawable/btn_background">
 
         <TextView
+            android:id="@+id/txt_recceived"
             android:layout_width="wrap_content"
-            android:maxWidth="250dp"
             android:layout_height="wrap_content"
-            android:text="this is received message"
-            android:textSize="18sp"
+            android:maxWidth="250dp"
             android:padding="10dp"
-            android:id="@+id/txt_recceived"/>
+            android:text="this is received message"
+            android:textSize="18sp" />
+
+
+
     </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/reactsLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_below="@+id/relative"
+        android:layout_alignEnd="@id/relative"
+        android:layout_alignBottom="@id/txt_recceived"
+        android:layout_marginTop="-6dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/sent_background"
+        android:minWidth="22dp"
+        android:visibility="gone">
+
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/circleguja"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="3dp"
+            android:scaleType="centerCrop"
+            app:shapeAppearanceOverlay="@style/circle"
+            app:srcCompat="@drawable/guja"
+            android:visibility="gone"/>
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/circlesaxia"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="-3dp"
+            android:scaleType="centerCrop"
+            app:shapeAppearanceOverlay="@style/circle"
+            app:srcCompat="@drawable/saxia"
+            android:visibility="gone"/>
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/circlemgelisaxia"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="-3dp"
+            android:scaleType="centerCrop"
+            app:shapeAppearanceOverlay="@style/circle"
+            app:srcCompat="@drawable/saxiamgeli"
+            android:visibility="gone"/>
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/circlebarbare"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="-3dp"
+            android:layout_marginRight="2dp"
+            android:scaleType="centerCrop"
+            android:visibility="gone"
+            app:shapeAppearanceOverlay="@style/circle"
+            app:srcCompat="@drawable/barbaredafoe" />
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/circlenini"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="-3dp"
+            android:layout_marginRight="2dp"
+            android:scaleType="centerCrop"
+            android:visibility="gone"
+            app:shapeAppearanceOverlay="@style/circle"
+            app:srcCompat="@drawable/ninishoki" />
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/jesus"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="-3dp"
+            android:layout_marginRight="2dp"
+            android:scaleType="centerCrop"
+            android:visibility="gone"
+            app:shapeAppearanceOverlay="@style/circle"
+            app:srcCompat="@drawable/jesus" />
+
+
+    </LinearLayout>
 
 
 </RelativeLayout>

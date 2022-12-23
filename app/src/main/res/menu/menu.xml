@@ -5,7 +5,7 @@
         <menu>
             <item
                 android:id="@+id/name_change"
-                android:title="Change your name" />
+                android:title="Change your name or password" />
             <item
                 android:id="@+id/log_out"
                 android:title="log out" />

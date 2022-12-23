@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <RelativeLayout
-        android:id="@+id/relative"
+        android:id="@+id/linearshec"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/btn_background"
@@ -28,6 +29,7 @@
 
 
     <RelativeLayout
+        android:id="@+id/relative"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/sent_background"
@@ -49,6 +51,87 @@
             android:textColor="@color/white"
             android:forceDarkAllowed="false"/>
     </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/reactsLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_below="@+id/relative"
+        android:layout_alignEnd="@id/relative"
+        android:layout_alignBottom="@id/txt_sent_response"
+        android:layout_marginTop="-14dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/sent_background"
+        android:minWidth="22dp"
+        android:visibility="gone">
+
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/circleguja"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="3dp"
+            android:scaleType="centerCrop"
+            app:shapeAppearanceOverlay="@style/circle"
+            app:srcCompat="@drawable/guja"
+            android:visibility="gone"/>
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/circlesaxia"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="-3dp"
+            android:scaleType="centerCrop"
+            app:shapeAppearanceOverlay="@style/circle"
+            app:srcCompat="@drawable/saxia"
+            android:visibility="gone"/>
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/circlemgelisaxia"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="-3dp"
+            android:scaleType="centerCrop"
+            app:shapeAppearanceOverlay="@style/circle"
+            app:srcCompat="@drawable/saxiamgeli"
+            android:visibility="gone"/>
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/circlebarbare"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="-3dp"
+            android:layout_marginRight="2dp"
+            android:scaleType="centerCrop"
+            android:visibility="gone"
+            app:shapeAppearanceOverlay="@style/circle"
+            app:srcCompat="@drawable/barbaredafoe" />
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/circlenini"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="-3dp"
+            android:layout_marginRight="2dp"
+            android:scaleType="centerCrop"
+            android:visibility="gone"
+            app:shapeAppearanceOverlay="@style/circle"
+            app:srcCompat="@drawable/ninishoki" />
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/jesus"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="-3dp"
+            android:layout_marginRight="2dp"
+            android:scaleType="centerCrop"
+            android:visibility="gone"
+            app:shapeAppearanceOverlay="@style/circle"
+            app:srcCompat="@drawable/jesus" />
+
+
+    </LinearLayout>
 
 
 </RelativeLayout>

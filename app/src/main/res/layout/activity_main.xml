@@ -26,7 +26,71 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            >
+
+            <LinearLayout
+                android:id="@+id/layoutEmoji"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="10"
+                android:visibility="gone"
+                android:layout_marginBottom="7dp">
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/guja"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:scaleType="centerCrop"
+                    app:shapeAppearanceOverlay="@style/circle"
+                    app:srcCompat="@drawable/guja"
+                    android:layout_marginHorizontal="4dp"
+                    />
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/saxia"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:scaleType="centerCrop"
+                    app:shapeAppearanceOverlay="@style/circle"
+                    app:srcCompat="@drawable/saxia"
+                    android:layout_marginHorizontal="4dp"/>
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/saxiasMgluriPorma"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:scaleType="centerCrop"
+                    app:shapeAppearanceOverlay="@style/circle"
+                    app:srcCompat="@drawable/saxiamgeli"
+                    android:layout_marginHorizontal="4dp"/>
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/niniShoki"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:scaleType="centerCrop"
+                    app:shapeAppearanceOverlay="@style/circle"
+                    app:srcCompat="@drawable/ninishoki"
+                    android:layout_marginHorizontal="4dp"/>
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/barbareDafoe"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:scaleType="centerCrop"
+                    app:shapeAppearanceOverlay="@style/circle"
+                    app:srcCompat="@drawable/barbaredafoe"
+                    android:layout_marginHorizontal="4dp"/>
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/jesus"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:scaleType="centerCrop"
+                    app:shapeAppearanceOverlay="@style/circle"
+                    app:srcCompat="@drawable/jesus"
+                    android:layout_marginHorizontal="4dp"
+
+                    />
+
+
+
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/response_layout"
@@ -41,7 +105,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_weight="9"
-
                     android:gravity="center_vertical"
                     android:lines="1"
                     android:paddingLeft="7dp"
@@ -59,11 +122,12 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/linearLayout"
+                android:id="@+id/layoutEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:orientation="horizontal"
+                android:visibility="visible"
                 android:weightSum="100">
 
                 <EditText
